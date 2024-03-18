@@ -66,11 +66,7 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
     """
     This handler receives messages with `/start` command
     """
-    # Most event objects have aliases for API methods that can be called in events' context
-    # For example if you want to answer to incoming message you can use `message.answer(...)` alias
-    # and the target chat will be passed to :ref:`aiogram.methods.send_message.SendMessage`
-    # method automatically or call API method directly via
-    # Bot instance: `bot.send_message(chat_id=message.chat.id, ...)`
+
     thread = client.beta.threads.create()
 
     await state.set_state(ThreadID.thread_id)
@@ -80,11 +76,7 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
 
 @dp.message()
 async def echo_handler(message: types.Message, state: FSMContext) -> None:
-    """
-    Handler will forward receive a message back to the sender
 
-    By default, message handler will handle all message types (like a text, photo, sticker etc.)
-    """
     try:
         
         data = await state.get_data()
